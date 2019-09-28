@@ -1,0 +1,1552 @@
+
+//---------------------------------------------------------
+1. Coding: a. merge 2 arrays. b. 力扣438
+
+2. Design a leetcode li‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌ke online judgement system
+3. Coding: a. 矩阵乘法 b. 在一个(0，1)矩阵里找最大的intersection。 所谓的intersection指横竖相连的所有1，类似下图
+010
+111
+010
+的所有1， 这个intersection size是5。
+4. Experience
+5. Design typeahead search.
+
+因为有其他offer所以催了一下，面完3天后给了结果。hr说coding is strong, design is good, but not meet the position bar。不是很懂现在fb的招人情况是啥，估计是design聊得还不够好吧。建议大家去面之前最好跟hr沟通一下职位经验需求。听说grokking system design课程很有帮助，不过我没有验证过，希望有上过的小伙伴分享一下体验。
+
+//---------------------------------------------------------
+利口时伊勿 415
+
+利口 器散
+
+沟通非常重要，再沟通了一些限制以及测试用例后开始码，第二题有一个小Bug，不过都给出了最优解。
+
+//---------------------------------------------------------
+Q1
+defang IP address，比如
+18.0.121[.]1‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌0 ->  18.0.121.10
+需要问清楚到底是怎么回事，这个很简单只要去除非数字和点的字符，只是热身题
+
+Q2
+Implement cd，比如
+cwd, arg, ans
+/foo, bar, /foo/bar
+/foo, /a, /a
+/a/b/, ../../../../../, /
+/a/b/, ../c/./../foo, /foo
+有很多corner case需要先想清楚再写
+
+
+//---------------------------------------------------------
+
+
+FB面试总结
+FB 店面加昂赛，DE 和 SWE两个赛道同时搞。前后总共一个月时间。FB内部猎头往年熟人重新‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌联系我。我没有拒绝，顺势而为。
+
+SWE
+1 同胞妹妹 二D 字符格子 找一个单词。用后退追寻算法。二问如果多个单词如何优化。用踹啊。
+2 德国壮男 BQ。各种嗨聊。无coding
+3 三哥 陪饭。三哥是个好人。其中聊到他们的缓存有两层，第一层是只读，唯一要求是快和宽；第二层是读写，脏缓存写回数据库。三哥聊的设计对我午饭后的设计很有启发。
+4 美国小哥 设计FB搜索。按照grokking步骤一步一步来。其中索引设计用双层桶划分就是午饭三哥启发的。
+5 谨慎白小弟 莉蔻 久无伞 + 额陆玖
+
+虽然准备了不长时间，但是没有遇到难题。一定要准备grokking的设计题。要抓住一切可以利用的机会，吸收一切可以吸收的知识和提示。午饭互动就是一例。和面试官互动，如果可以，play cute and get hints。
+就我个人而言，刷题不是考量大取胜，而是靠总结思考。另外刷莉蔻不要根据网站给出的题的难易程度，他们并不准确。
+//---------------------------------------------------------
+
+算法七道题，白板，基本都是简单，加上LRU，circular array插入，推荐共同好友。
+凉在 system design， 设计一个service，翻译一句话到任意语言
+
+//---------------------------------------------------------
+1. 给一个str包含左右小括号和小写字母，求括号的最大“深度”，比如“))((())())()”的最大“深度”就是3。。
+2. 给一个str，形‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌式同上，返回一个子序列 such that 它的括号合法且只需删去最少数量的不合法括号。如果有多个解，只需要输出一种合法子序列即可。需要写代码。
+
+
+
+求大米～
+
+
+
+补充内容 (2019-9-8 02:02):
+以下内容需要积分高于 200 您已经可以浏览
+
+之前搞错了，对于第一题，括号一定是合法的，不然没法做。
+
+//---------------------------------------------------------
+
+F家店面，5分钟寒暄。两道LC Medium难度题，(1) Nested List Weight ‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌Sum (只给了数组，自己归纳总结是否要建辅助类) (2) Delete kth node from end of linked list。第二天就告知可以去Onsite了。祝自己好运。
+339
+//---------------------------------------------------------
+上来寒暄了五分钟，聊聊他们‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌组和我的简历。然后开始做题。
+
+有两个List，分别代表两个人Calendar上面的空闲时间段。比如：
+
+A = [[1, 3], [5, 7]]
+B = [[2, 4], [6, 8]]
+
+要求输出两人共同的空闲时间段。这题返回[[2,3], [6,7]]就好。
+
+答：先记录下每个人的起始时间和结束时间，然后所有时间从左到右扫一遍，记录所有的“两个人都空闲”的时间段即可。
+
+Follow-up 1: 如果要求共同空闲时间必须超过一定时间（比如，一个小时），怎么办？
+答：加一个if判断即可。
+
+Follow-up 2: 如果假设[3, 4]和[4, 5]也有共同空闲时间[4, 4]（可以见一面），怎么办？
+答：在每个时间点上，先考虑谁变得available了，处理一下，再考虑谁变得不available了。
+
+Follow-up 3: 如果有20个人，怎么办？
+答：用heap。
+
+已顺利拿到onsite。只有这一道题，并不像传说中的必须两道题才能过。但是应该做到bug free了。
+求大米！
+
+//-----------------------------------------------------------
+
+
+
+//-----------------------------------------------------------
+
+第一轮是 
+第一题 类似无流凌  只考虑正数  space 1
+第二道 是给一个array of interval 然后一个interval 在这个 array 里面找到弄够cover given array的最小size 
+（这道题觉得很熟悉 但是面经 和 leet 好像都没有） 
+
+第二轮
+第一题 妖舅舅 直接用iterative的 然后就 第二题了
+第二题 尔散 先用priority queue 做 然后 考虑 k 很少 list length 很大 用了 divide and conquer
+
+第三轮
+bq 问了most proud project，project business value， internship 喜欢哪点 学到什么， team conflict
+好像还有别的bq 问的挺细的现在忘了
+第一道：一个数 在sorted array 出现次数 类似散斯
+第二题： 流气
+
+
+第二题的话 是 给了一些 array of  interval【0，4】 [‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌1,4], [1,2] [2,5], [2,4], [2,7] 然后 target interval 【0，7】 
+return size = 2， 【0，4】 【2，7】 可以
+如果没法cover 就return -1；
+
+我是先sort array based on starting time
+then loop through it， keep tracking of the ‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌farthest range you could find，use a deque to record the interval added， every time find the farthest range check if it will reduce the size of deque, if could pop dequeu and push the new array.
+the result is the size of the deque.
+
+
+现在可以确定的是 time complexity 是 optimal 的 O(nlogn) 因为要sort 底下那个loop最多 visit each element twice push pop所以O（n)
+但是我觉得 space complexity 还是 可以弄少点的
+
+//---------------------------------------------------------
+
+
+实在是太不安了，发个面经攒RP.
+第一轮：利特扣的漆鎏，没有followup, 面试官人超好。
+第二轮：尔尔药，丝芭（两种方法 itarative, recursive）面试官是港人，一直催我，还不让我好好写代码，要我跳过很多helper function的具体实现。说实话现在就是整天担心这一轮会不会故意挂我....
+第三轮：常规bq，比较难的大概就是收到最有建设性的feedback是什么。和一道很简单的二分题。
+‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌
+//---------------------------------------------------------
+ chaoyinw 2019-4-23 07:36:56 | 只看该作者 回帖奖励
+本楼：	👍   100% (4)	
+  	0% (0)   👎
+全局：	👍   100% (453)	
+  	0% (0)    👎
+
+2019(4-6月) 码农类General 硕士 全职@Facebook - 内推 - Onsite  | Other | fresh grad应届毕业生
+4/22日的fb new grad on-site. 六个小时前刚面完，热乎乎的！
+
+
+第一轮：bq。能记住的问题有：
+1） 介绍骄傲的p‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‍‌‌roject。遇到了什么问题。
+2） 怎么处理和manager的矛盾
+3） 你有role model么？是谁？你觉得你和她的差距是什么？
+两道coding：爻垚霊。第二题我没见过，给一个只含有disdinct char的string，打印出所有可能的string，每个string都包含unique chr，且是原string char 的子集。相同字符集的str只用打印一个。例子：{'abc'} ->{' ', 'a', 'b', 'c', 'ab', 'ac', 'bc', 'abc'}（如果有见过这道题的能在评论告诉我题号么？）
+第二轮：嘶铒。经典hard题。我是用stack做的，面试官可能没见过这么做的，光解释清楚convince他我是对了就花了十五分钟。讲完之后他还要求我优化，虽然我知道two pointer可以将Space优化到O(1)，无奈没仔细看解法，虽然面试官给了hint也没能急中生智。最后面试官说那你就写stack吧。（哭）写完之后给了follow up：如果这个柱状图里面有个洞（所有这个index的水都会漏掉），要怎么解。
+第三轮：彡偲。第二题是偲偠焐变体，每个string可能是负数。有了负数之后corner case增加了，我一下子没反应过来，没写好。最后没写完就结束了。
+
+//---------------------------------------------------------
+ richardtian 2019-4-19 10:20:01 | 只看该作者 回帖奖励
+本楼：	👍   0% (0)	
+  	0% (0)   👎
+全局：	👍   100% (28)	
+  	0% (0)    👎
+
+2019(1-3月) 码农类General 硕士 全职@Facebook - 内推 - Onsite  | Other | fresh grad应届毕业生
+今天刚面完。机票酒店都挺好，吃的也棒。Uday上午三轮tech，吃完饭下午campus tour和oculus打僵尸游戏。
+lz第一轮面的很砸，一题，题目是用read4实现随意多次read，刷题网几乎原题，edge cases太多lz脑阔昏代码没写完。。。
+第二轮第一题task scheduler改编，要求按给定的task顺序，给定的cool down time计算总共的time slot，第二题find the first bad version，应该是刷题网或面经原题。
+第三轮开始说纯bq，bq完了还有时间来了道题，实现string compare(字典序)，只比较前n个char。
+
+lz预计最好的结果是加面。。第一轮实在脑阔昏。。下来听大‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌佬们聊天好像都是秒。。感觉很惭愧浪费机会
+
+同是贫农就不加限制了，求大米。。。。
+
+//---------------------------------------------------------
+ shrekfelix 2019-4-19 09:11:30 | 只看该作者 回帖奖励
+本楼：	👍   100% (1)	
+  	0% (0)   👎
+全局：	👍   100% (10)	
+  	0% (0)    👎
+
+2019(7-9月) 码农类General 硕士 全职@Facebook - Other - Onsite  | Other | fresh grad应届毕业生
+今天uday
+第一轮 而斯流 而斯琪
+有小bug但他说不用改了就拍照了 凉吗？
+第二轮 散
+做了半天做出来了 有点丑 然后时间到了 就没别的题了 凉吗？
+第三轮 bq+一个做题网没找到的题 暴力解+test case 然后说了优化思路 他觉得可以然后时间到了没让写 凉吗？
+
+全程很多沟通 思路出的很快但代码不够neat 朋友‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌们我还有多大希望？
+
+//---------------------------------------------------------
+四月12号的uday
+
+第一轮 bq， 问简历并且说的很具体。你收到的manager 的最差的feedback是什么。你最喜欢的教授和最讨厌的教授。bq答的不是很好。coding是给一个年收入和算税金的policy 算出这个人一年交的税 example：给一个 收入 超过 10000 收1%，超过 20000 收2% 。。。。。超过 50000收 5% 再高了就不收了
+我直接写了一个子函数，里面用了一个递归，复杂度o(n)
+
+第二轮 一道binary search 的题 类似 first bad version， 加上一道medium to hard的题（题挺复杂的不是很有印象了，我用的dfs来解的，面试官说没问题）
+
+第三轮 是一个manager 考的，题比较简单 三道题  莉蔻 五十三 （要求需要用递归来做）， 六八零（秒）， 给一堆边长，求哪一些边可以组成直角三角形（我一开始用的hashmap，复杂度是o(n2)。 面试官问我还能不能优化，还没等我想一会儿，他就说可以用3sum的思路，我立刻知道了，就把解法‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌写给他了）。 
+
+求offer啊!!!
+//---------------------------------------------------------
+
+
+[hide=123]
+
+第一轮 ： 
+1. 求两个arr 的交集部分。
+2. 从几个sorted list 里面找到第k小的元素。
+第二轮：
+聊聊项目 ，与主管的矛盾。
+1.求子树的最大的sum 是多少。
+2.对于一个树进行编码 解码
+第三轮：
+1.利口 妖气
+2.最长不重复的字母的子序。abccc -> 3
+
+
+//---------------------------------------------------------
+Round 1：散酒吧 & 思而流
+Round 2: BQ 问 project 以及teamwork + 爱琳琳
+Round 3: 散五菱 & follow up (super long and short) +摇散散
+
+
+//---------------------------------------------------------
+Cool，简短介绍完毕，干货上起。面试题大约还是比较OK的Easy+Medium，但是最后一轮国人老哥的题目戳中盲点，导致完成度不太OK。老王心里大概知道结果了。
+1轮1题，希腊小哥，简短寒暄项目后开始coding，easy product without self。秒了之后问有没有地方可能会出bug。讨论半天后说前后遍历用的temporary variable可能会overflow。虽没get到具体想问的点，但过了。
+1轮2题，sparse vector multiple，用hardmap做了，问时间复杂度时穿插问了说hash map为啥O(1)。有可能O(N).解释完后，问有没有可能不用hash map，答用两个vector解决。时间到，happy bye.
+
+2轮BQ，美国UCB老哥，team leader.基础BQ问了很多关于实习的。老哥比较循规蹈矩，问了25分钟BQ之后，说必须做一题。
+2轮coding。回文，除大小字母，数字外的所有特殊符号均忽略。双指针。做的时候考虑的有点迷糊了。在老哥的提醒下发现了问题。解决之后，老哥开始问问题。1. 设计几个test case来test。为什么？ 2. coding时间复杂度空间复杂度。3. 如何优化你的code？
+
+3轮1题，国人小哥。不太喜欢寒暄，上来给了Task schedule。fixed order。老王电面一轮已经面过这题。就说面了。小哥换题。
+3轮1.5题。有点像利口驷吾零。说有一个balanced BST，treeNode除val外，还有一个值为Mode。mode值不确定，可以为0或非0.mode对树结构无影响。要求‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌删除树中所有mode为0的节点。
+因为没见过这题，老王反正强行解，1遍历树找到要删的vals。2候检find函数删掉要删的所有nodes。强行刚30分钟后，写出整墙大约能行的代码。最后跑了两个test case可行。
+但小哥说最优方法为在recursion中进行删除。后拍照say bye。
+
+总的来讲，这一个多月把能准备刷题的时间全部拿来准备。onsite面试虽然紧张但也是正常发挥，赛出风度赛出水平了。国人老哥出得题也反应出了我在二叉树以及BST上准备还是不够。（之前自认为二叉树的迭代做法是了如指掌）。平心而论完全没有后悔。最好结果估计也是加面了。因此发帖求好运，求加面。贴上FB campus cafe照片作为福利了。大家加油。
+
+
+//---------------------------------------------------------
+2019(4-6月) 码农类General 硕士 全职@Facebook - 内推 - Onsite  | Other | fresh grad应届毕业生
+4月12号的uday 昂赛, 来贡献一个数据点吧
+
+两轮coding4题一轮bq+coding1题, 国人小哥+天竺老姐口语好也许是老美+天竺老哥一脸难缠样
+两轮纯codiing的题都很基础, 楼主也没想到这么基础. 具体的题都在https://www.1point3acres.com/bbs/thread-454990-1-1.html 这个pdf的前四页有, 基本这个pdf刷完了应该就没有考不到的题了,时间不够的话刷前几页也行的.
+bq那轮答得不太好,感觉自己项目太简单没有技术难度(楼主没有技术, 只会刷题), 天竺老哥想挂我, 写coding的时候我回头说什么他都嗯嗯嗯一脸呆滞看着我, 可能一副要挂你挂定了的样子. (一起去的小伙伴有写题写太快, 两轮6题,真的惊了. ) 一轮因为最近一个月的面经题基本都写过了楼主也没什么遗憾了, 尽了最大的能力啦. fb mpk campus真的超级好看, 好基友也在这里, 有机会还是挺想去的~
+
+大家加油!!!!求米!!!
+
+
+
+补充内容 (2019-4-14 13:16):
+去年实习全职都被简历拒,好不容易这次bar低终于有机会去面!!!!! 吃好喝好还拿了好看的uday衣服很开心啦hhhhh
+
+补充‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌内容 (2019-4-23 07:09):
+今天收到hr电话给的口头offer啦
+
+
+//---------------------------------------------------------
+
+
+2019(4-6月) 码农类General 本科 全职@Facebook - 网上海投 - Onsite  | Fail/Rej | fresh grad应届毕业生
+一共三轮都是LC原题，感觉答得还不错但是还是跪了。。。
+第一轮abc小哥，题是LC 918，全程没啥交流，算是做出来了。
+第二轮印度大叔，各种挑刺。题是LC 44的简化版没有 '?'，只有 '*'。
+第三轮是abc姑娘，也是没啥交流，LC 393。
+
+已经收到据信了，move on。
+过几天面robinho‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌od，求点大米看面经。：——）
+//---------------------------------------------------------
+第一轮: 一道easy 利口 柳汽，高频中的高频，easy中的easy。
+失败之处在于，一遍bug free的代码写完。要和我讨论StringBuilder的好处，但是他不直接问StringBuilder有啥好处，问我如何自己实现StringBuilder，我就说是生成一个新的string，并改变指针指向新的string，也说了string是immutable。然后问生成新string的时间复杂度，就是copy string的时间复杂度，这里我没有答上来。一直以来，我都是关注string是immutable，高频率更新string的情况下用StringBuilder可以减少create new object，节约时间空间，但是忽略了copy string是O(N)的时间复杂度。这里有点被问懵了，其实我面完了才反应过来面试官的意思，如果现场可以反应出来，解释一下我没理解他的问题，并讲一下StringBuilder的好处是可以弥补的。
+然后时间复杂度，空间复杂度分析，要分析精确到两个input的长度比如，O(max(m,n))
+一道medium: 利口 期巴 变体
+input: [2,3,11]
+output: [2, 3, 11, 22, 33, 6, 66]
+没见过，但是和原题思路也没啥差别。写的时候有一点小bug，还没等写完面试官就指出来了，时间当时有点紧张。
+然后就是跑test case，时间空间复杂度。
+
+第二轮：
+bg: 为什么转专业，team work中你和别人有矛盾，team work中其他组员之间有矛盾，实习干了啥，有什么干的好的地方，什么干的不好的地方
+一道easy: 利口 尔斯耳， 也是easy中的easy
+当中写代码的时候忘了lower case这回事了，跑test case才想起来，虽然是自己改bug，但是这么愚蠢的bug又减分了。
+
+第三轮：
+https://www.1point3acres.com/bbs/thread-148413-1-1.html
+和这个帖子里的题一样的，感觉是个medium吧。
+之前没做过，先是O(N^2)的暴力解法，讲完了面试官说不行，再想更好的解法。
+暴力解法讲完，对这个题有了个理解，然后想起了LCA，用recursion写的，和LCA挺像的，多加一个global variable。但是写的时候写了个bug，跑test case才看出来，改的也不是特别的流利，减分。
+这时候就感觉有点凉了，想起上面提到的那个YT视频里讲的要分析pros and cons，想着挽救一下，自己主动说了一下recursion有stack over flow的风险。面试官只有点头和记笔记，我也有点不知道该说啥，感觉主动多说一点pros and cons会加分的。
+分析时间复杂度，空间复杂度。
+follow up: 多个children，怎么处理，follow up经典中的经典，但是没空实现了。
+
+
+//---------------------------------------------------------
+
+ Ribery7 2019-4-11 07:54:15 | 只看该作者 回帖奖励
+本楼：	👍   100% (3)	
+  	0% (0)   👎
+全局：	👍   100% (28)	
+  	0% (0)    👎
+
+2019(1-3月) 码农类General 硕士 全职@Facebook - 内推 - Onsite  | Pass/Offer | fresh grad应届毕业生
+第一轮：而其伞，而无期，第二题面试官说如果树很大，递归写法会stack overflow，建议看一下循环写法实现。
+第二轮：先bq，举例领导给constructive的建议，队友delay提交，什么项目一开始低估了他的复杂度，还有一般的记不清了，然后一题其溜溜。
+第三轮：依似伞，很高频，就写了一道之后就聊天了。
+
+楼主也是毕业了三个月终于上岸，面试机会也不多，一定要多刷tag，希望大家加‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌油，总会有出路的。接到offer的时候，房子还有一周到期。希望大家都能心想事成，求大米。
+
+//---------------------------------------------------------
+电面：integer to english words
+
+第一轮：manager问bq 剩下20分钟问了valid palindrome的变形 如果删掉至多一个字母 能变成valindrome 就返回true
+
+第二轮：merge 2 sorted list, lc 壹壹陆, follow up是不用额外空间做 当时有点懵 因为一直都是用BFS做 想了一会儿…… 还好小哥比较Nice 给了hint 
+
+第三轮：就是让我面完焦虑忐忑了整整4天的这轮 就是lc伍拾叁变形 只不过返回的是最大sum subarray的最小长度 
+
+开始时我懵逼地想用prefix sum, n^2的复杂度做 小哥说 再想一个 好 那我用single pass  O(n) 多存几个变量做 小哥嫌我变量用多了
+此时我纠结在要返回最小长度 还是没能想起来这是道easy原题啊…‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌…于是一整轮就写了这么一道 也没有follow up
+
+结束的那一瞬间就觉得自己凉透了 被自己蠢哭 因为之前看地里帖子都是纯coding的话一轮两题才有可能过
+结束之后 当我想起来这是一道easy原题的时候 
+默默去零食区薅了几袋零食 不能白来这一趟 我吃点儿总行吧…… （捂脸
+
+請問 LC 壹壹陆 的follow up
+不使用額外空間, 是什麼意思? 不能用queue嗎?
+已加米, 謝謝
+
+//---------------------------------------------------------
+ liangquan903 2019-4-10 04:04:47 | 只看该作者 回帖奖励
+本楼：	👍   100% (1)	
+  	0% (0)   👎
+全局：	👍   100% (31)	
+  	0% (0)    👎
+
+2019(1-3月) 码农类General 硕士 全职@Facebook - 内推 - Onsite  | Other | fresh grad应届毕业生
+加面完最后一轮，心情说实话不是很好。onsite：
+第一轮：bq各种least问题，least internship， least person you work with, 还有一个最rocky的项目
+code：valid palindrome1，2
+第二轮：reverse node in k group, reorder list
+第三轮：Longest Substring with At Most K Distinct Characters
+
+之后加面一轮coding
+向量点积
+稀疏向量点积
+如果一个向量很长怎么办（我后来发现tm这是道高频题。。老子刷了3天的tag毛都没刷到23333）
+最后一轮我和印度女面试官的交流真的很捉急。。。题是做出来了但是最后我感觉她比较不耐烦，主要刚开始我真的不知道她在说啥。。。。。
+
+希望能有好运吧‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌，可无论结果如何，大不了就是继续找嘛！！！不行就留在美国继续找！！我相信，所有的安排， 都是最好的安排！！
+最后，那个。。大家看了有帮助的话。。麻烦加点米哈。。
+
+//---------------------------------------------------------
+第一轮：垂直遍历二叉树
+第二轮：BQ+字符串相加
+
+第三轮   刷题网站301 只返回一种情况，链表两两翻转
+跟其他一起的小伙伴聊过题目，全部都是面经出现过的。
+
+
+//---------------------------------------------------------
+
+一共三面，其中最难的两道题：read4k, integer to english word，可见题目很基础，当时其它一起面试的人表示碰到的都是原题，所以面试重点应该是软技能（吹逼）。BQ有包括：为什么fb，最自豪的项目，项目中遇到的最大的一个问题。
+
+时间线：3/5视频面试，3/25最终面，4/5通知有offer。
+
+
+//---------------------------------------------------------
+
+
+店面是二叉树serialization，onsite题目都不难是dfs和合并interval。可惜第一次onsite，各种紧张犯错。。。浪费了Facebook‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌的面试，唉。大家加油。Facebook不难。
+
+//---------------------------------------------------------
+
+4/4 Facebook U-day Software Engineer - New Grad
+總共就3輪
+Round 1 韓國小哥 compiler team
+沒看過的graph題
+
+Given a directed acyclic graph, write a function to compress this graph.
+
+開始前, 問我要用什麼語言, 我說: Python, 
+他說:我不喜歡Python, 但我看得懂, 你就用吧 
+我：Lol
+
+他先要求寫data structure, 然後我先寫 merge 的criteria, 最後再寫一個 recursive dfs 去 merge, 問問time complexity
+
+中間我問: 你想看我先寫main function還是merge function, 
+他說：有差嗎，反正你都要寫, 而且都要寫對
+我:XDD ok
+
+用他的test case去跑一次確認是對的之後, 
+他心情就變得很好, (如果一早起來面試我也會很賭爛)
+他說如果用iterative寫會比較漂亮，但我喜歡你的solution
+QA的問問題的時候, 他就這是一個非常好的問題
+
+只能說coding前後, 超大反差
+
+他：我們這關來問問題吧, 有時間就來coding
+我：真假，總共3關, 要拿一關來BQ.
+他：你很想coding嗎？
+我：I choose not to answer XD
+
+其實問題都還蠻常規的
+Tell me about one of your successful projects.
+What would you have done differently in this project?
+Tell me the type of person you don't want to work with.
+
+
+
+//---------------------------------------------------------
+
+Leetcode 121 + 122
+原本以為就問1題，就裝傻當做第一次看到打算慢慢寫
+先把 one transaction 秒了，follow up問 two 的時候想了一個 O(N^2)的 suboptimal解
+結果他接著出下一題, 説follow up看你會怎麼延伸而已, 真是尷尬
+
+Leetcode 76
+到這裡壓力就有點大, 知道這題一定要把optimal解出來,
+還好有寫過，印象解大概是window scan, 然後就邊debug邊寫把他寫出來, 時間到的時候刻了一個解
+印度小哥人蠻好的, 留下來確定我解出來的solution是對的 (看起來是跟他準備的解答不完全一樣)
+再問了‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌我time complexity, 我原本說O(N^2), 不過他直接提示我, 最後回答O(N) XDDD
+最後跟他聊了一下結束
+
+The graph here is a DAG
+
+Original:
+(a), (b), (c) -> (d) -> (e) -> (f), (g)
+Compressed:
+(a), (b), (c) -> (d, e) -> (f), (g)
+
+(a), (b), (c) are parents of (d), 
+(d) is parent of (e)
+(e) is parent of (f), (g)
+
+In the above case, we compress (e) into (d) and get (de).  We will assign the value of (e) to (d) to get (de) and remove node (e).
+In other words, we prune the edges while still retaining the order and directions of the DAG.
+In code, given (parent) -> (child) -> (grandchildren, could be many) it would be checking whether the child node has only a single child.  If yes, we would merge the child into the parent, and assign the grandchildren to the parent's children.
+
+//---------------------------------------------------------
+第一题：Search word in a list. 有点儿像regular expression但不完全是，给定一个比如“b*y”，星号代表任意字符，在["boy","bob","aapl","whatever"]里头找然后返回bool
+不知道印度佬是想误导我还是怎么说，上来面试问我如果找一个东西最快用什么data structure，我说用dictionary或者hashmap啊。。。
+然而这题不止星号可以是26个字母。。。所以。。。我就用了Trie。。。做题的时候Trie给定了，没写
+
+第二题：还是同一个人，题目FB自己编的，因为我在上厕所的时候看到墙上贴了最近要merge duplicate账户。只有5min，说了下思路。
+题目是，key是name，value是list of email address，merge同样email address的账户然后返回一个人所有name的一个list。。。
+
+第三题：search in rotated sorted arr
+第四题：Next Permutation 变种，要找比现在这个大的最小值
+
+第五：‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌没有了，一直在聊我的project，问了我的pipeline，difficult problems solved，冲突解决，Thread怎么用的
+
+//---------------------------------------------------------
+
+报一个朋友三月底的脸书onsite 面经:
+第一轮一个老白男：
+	第一题 Binary tree里找LCA 秒了
+	第二题 大数相乘 秒了
+
+第二轮一个老黑男：
+	第一题 外星人字典
+	第二题 Guess Word 问了没写代码
+
+第三轮亚裔:
+	纯BQ.  加了一题 add binary
+
+
+
+//---------------------------------------------------------
+
+
+	3.5 脸家昂塞，共4轮
+	r1：国人小哥，BQ + 最后10分钟 first bad version，各种问题版上都能见到，最骄傲的一个项目，与别人意见不一致怎么办，老板对你有过什么建议，为什么读博，为什么又找在industry找工作，如何同别人合作。大概这么多吧.主要朝Facebook 5 Core Values去回答
+	r2：白人小姐姐，coding，高频的01矩阵找最左边1所在的列，假装没做过，分析了从O(m*n) 到O(m*logn)到O(m+n)的算法，最后实现。没能bug free，小姐姐很热心提醒。
+	r3：白人大哥，system design, 设计搜索自动补全功能，typeahead。
+	r4：国人小哥，coding，不确定是不是LC原题。给一组list，[[2,3], [3,4], [5,6,7], [1,2]], 只要有相同元素的list都可以合并，最后要求返回合并之后的list [[1,2,3,4],[5,6,7]]。当时没想起来用union-find，就先分析了暴力的方法，然后尝试将每个list和元素做mappin‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌g，小哥提醒说方向对了。然并卵。。。
+
+	之前店面的是LC76. 
+
+	最后希望对大家有帮助，offer多多！
+
+
+	补充内容 (2019-4-6 03:49):
+	r2，[[0011111]], [0001111], [0111111]]。每row由0,1组成，前面全是0之后全是1，让找到最左边的1所在的列，这个例子里最左边的1是最后一行，在第二列。O(m+n)解法在下面回复里.
+
+//---------------------------------------------------------
+	第一轮 ：国人小哥 Smallest Range 一道hard 幸好我写过 不然估计45分钟就做这一道了，但是有一个很难的问题就是
+	为什么用pq就能得到最优解，我当时思考了很久也不知道，约莫觉得是一种贪心但是讲不明白，只能硬着头皮把代码写了。
+	写完剩15分钟出了一道meeting room的变种， room的数量固定是1 问最多能开多少回， 我用的dp 
+	还有一个follow up room的数量固定为k 问如何做，我还是用的dp，这道题没写代码 就交流了思路，面试官说我觉得这个能行就结束了。
+	第二轮：三十年经验来fb养老的manager， 交流有一点小问题，可能是我被吓到了有点还害怕。
+	bq 问的是我最薄弱的实习经历，因为不是在大厂实习，讲得实在不怎么样，
+	题目是 string(byte) compression 他还准备了一张纸让我理解，我觉得code部分还是面得不错的。
+	第三轮：还是国人小哥 题目 longest binary tree path， 属于Binary Tree Maximum Path Sum的简化版，但是人态度不是特别好
+	上来就查邮件， 我只好和他说 那我写完喊你，我大概十五分钟就写完了代码，他就问一些有的没的小细节， 就感觉到是我在推着面试官走
+	后来出了一个follow up 改成k个怎么解决， 我 又写了一遍代码，但是就在这时候出了一个小bug。也许就挂在这个小bug上吧。
+	但是这一轮的交流真的让我有点生气。
+
+//---------------------------------------------------------
+	尔柳旧；一而泗；
+	刷题网舞溜令，只有正数和有正负数两种都写了；
+
+	bq：最自豪的项目，最难的项目，组里争议怎么办；然后写了一个很简单的题，类似是很多单词放进hashmap，然后判断map里有没有某些单词
+	一起面的有人面到了：散伞原题，伞散柳类似题
+
+
+
+	一定要刷高频哈，真的非常有用！
+	脸熟好像是hr先看面试的分数看送不送hc，然后送hc讨论有没有offer，最后再开个会讨论package。
+	最近timeline来看，如果uday周一二面的，快的话下周一二应该有结果，如果没拒信，可能就是准备开会送讨论package了？太慢了可以催催hr
+
+
+//---------------------------------------------------------
+	第一轮，system design, 让设计一个web crawler， 假设有10000台服务器，并且没有database。
+	第二轮，bq轮。听说这一轮会问问research, 然后再出一道题。结果我直接聊了一轮，那哥们上来还说，“I also have a PhD background”...不知道是不是为了让我觉得Facebook也很重视PhD的感觉。。。
+	第三轮，出了两道题。第一道是蠡口而药物。当时我先给了排序法，然后又说了O(n)的类似快排的方法，小哥说你还有没有方法，我说了用heap，感觉这个是他想要的，因为他说那你写下这个吧。。第二道是一个array, 问有没有连续的subarray，它们的和是target（一个数）。当时还简化了题目，假如说有数都是非负的。我给了two pointer的sliding window方法。
+
+	吃饭。面了这么多试，这是唯一一个有小姐姐的轮。
+	第四轮，出了两道题。第‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌一题是蠡口酒迩。第二题是给定一个有向图，和其中一个node，让输出所有的从这个点出发到终点的路径，终点就是只有指向它的edge, 没有出去的edge。
+
+//---------------------------------------------------------
+	第一轮 code, 国人小哥，第一题 merge K sorted lists，第二题 一个只包含1-9的字符串， 可以添加加号或减号，组成的表达式最后的结果是一个target，输出所有的可能
+	第二轮 code，白人小哥，task schedule可以打乱顺序和不可以打乱顺序。
+	第三轮 bq， 白人小哥，问了实习，然后问你有没有想和他聊的项目。 code 是strcmp
+
+
+//---------------------------------------------------------
+
+	西雅图，team里面都是我这个领域的大神，遇到了几个偶像，囧，自愧不如，跪了也无话可说
+	1轮，director开场，闲聊+简单几何问题
+	2轮，system design， 设计三维模型版的instagram
+	3轮，数学计算光线追踪算法
+	4轮，算法，一堆随机二维点，验证是否可以组成凸多边形，followup：按顺时针或者逆时针输出
+
+	MP，说实话自我感觉良好，不懂为啥跪了
+	1轮，设计一个real-time的双目SLAM系统
+	2轮，system design， 设计google street view
+	3轮，经典算法，求矩阵sum，sum 和 update 的O（n），O（1）问题‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌，然后followup是超大scale的优化以及一些计算效率的问题（感觉当时答偏了，不是面试官想要的方向吧）
+	4轮， behavior
+
+//---------------------------------------------------------
+
+	脸家的onsite一般来说都巨简单，结果轮到我就是一个面试官说是experimental的题目：
+
+	题目是这样的，对于一个整数数组，后一个数是前一个的加一或者减一，输出所有local maximum和local minimum，
+
+	例子 [1,2,3,4,5,4,5,6,5]‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌ ，输出[5, 4, 6]
+
+
+
+//---------------------------------------------------------
+
+	第一轮：
+	p1: 力扣 幺九九
+	p2: 将int a插入一个sorted cyclic linked list，e.g. 将5插入 1 -> 2 -> 4 -> 6 -> 10 ->
+
+	第二轮：
+	bq，最骄傲的项目，你以前实习中最不喜欢的部分，你遇到过的最challenge的manager，你的manager曾经给过你什么建设性意见
+	code：力扣 三三
+
+	第三轮：
+	p1：力扣 五二三
+	p2：力扣 一二四
+
+	问题：
+	五道题全部做出来了，代码细节有没有问题先不谈。主要是第二轮的面试官口音很重，非常非常非常重，lz平时是属于跟印度哥哥聊天也能听懂80%毫无障碍的那种，结果这个面试官不知道是哪国人，我barely can't understand any word he said，就是我一个单词都没听懂，包括问bq的时候什么proud、least like、challenge这种关键词他都发音发的像俄罗斯口音（没有说俄罗斯不好的意思，就是表示很难懂），然后这就非常影响l‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌z思考和组织语言， 并且lz说的话面试官也不能完全听懂，像一些简单的word也不断停下来问我你在说什么，交流非常非常困难。
+	进入写题之后就顺利了很多，但是bq我觉得我们互相并没有进行什么有意义的对话，所以很担心，想问问假如最后是因为bq的问题挂了可以写邮件给hr argue要求加面吗。
+
+	先谢谢大家，求建议求好运。
+//---------------------------------------------------------
+	上周面完，这周收到拒信。因为签了协议题目不细说，全是高频题，之前地里帖子总结的和leetcode上近6个月的tag题过一遍就没问题。
+	uday总共三轮，前两轮coding，最后一轮纯bq。每轮coding两道题，整体medium难度。 个人感觉答得不错，过程行云流水和面试官谈笑风生还是挂了。。。
+
+	感觉这个Uday因为题目简单，人多所以bar特别高。参考地里其他uday的帖子，很多人感觉答得不错都挂了，玄之又玄。
+
+	move on了，希望之后有好事发生
+
+//---------------------------------------------------------
+	1.利口儿久其2.利口散令一
+	3.利口而无期
+
+
+	没错，就三道题，没错，都是高频。。。感觉自己运气爆炸，能遇都是准备过的题，而且都不难。
+
+	为什么挂。。。因为面试官也知道你刷过题，所以，他问的不是原题，很大可能是改过的题，所以背答案要挂的，一定要搞清楚原理，能变通应对。
+
+	给那些还在准备的同学一些建议：
+	利口刷tag，高频从上到下就够了，我看了之前其他同学的面经总结，高频题都一样，低频的各不相同，低频碰上原题的概率极低，尤其是uday，几十个人至少也得几十个面试官。所以高频准备好好的就行了。
+	遇到原题千万别激动，很可能是改过的，一定要问清楚。千万别看到原题就开启背答案模式。
+	关于BQ，我的根本没问简历，全是高频bq问题，网上一搜一大堆就那么几道。
+
+	其他的一些建议：
+	考前就不要刷题了，好好放松，好的心态比刷几十道题还‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌有用，而且面试前容易紧张，紧张会导致看题会看不进去，反而会让自己更紧张。
+	能选Uday onsite一定要选，送的帽衫真的超好看！
+
+	大家加油，我继续我的长征之路了，求点大米求安慰。。。
+
+//---------------------------------------------------------
+	挂经都发了，请大家多给楼主点米。给别人米自己不会失去米。
+
+
+	U-day onsite:
+
+	1.1 target sum of two element 
+	解法：sliding window
+
+	1.2 Hard 原题 散零移
+
+	2.1： Bq一个白人小哥问的非常detail： 最challenge 的project， 最difficult的member， miscommunication 的情况
+
+	切忌死于话多
+
+	2.2：  原题 移舅舅
+
+	3：一个印度大叔， 不太喜欢说话。非原题： task schedular (不是你想像的那个schedular)
+	给一个array里面装 task 编号， 相同编号task 不可以 在K个单位里相邻，如果相邻，则插入等待的unit 时间 求最少时间。
+	比如 [1 1 2 3 4 5 4] k=2 那么： 1+2+1+1+1+1+1+1+1=10个unit
+
+	总结：他家给的example少儿短，一般是一个input example里面只有三个element。除非你对这类题特别熟悉，不然还是有可能有corner case 不过，被他家查出来。都做出来了‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌，但是还是挂了。
+
+	千万记得跟HR说dream company, dream place哦。大家觉得有用的话，就多给点米吧。谢谢~~
+
+
+//---------------------------------------------------------
+	两题，P1: 乐扣 刘武陵 只要return true/false P2: 给一个list of primes，要求print他们所以可能得出的product，每个prime nunber只能用最多一次。比如given [2,3], return [2, 3, 6]
+两题，P1: 给一个list of strings，要你把互为anagram的string放在一个list里，return list of lists P2: 乐扣 伊尔斯 变体，只要求最长的path就好 （相当于把每个node的value看成1）
+BQ + 一题 BQ: 最骄傲的project，为啥骄傲，如何convince others，如果能再做一遍这个project，你会改进什么地方 P2：valid parenthesis，只有圆括号，follow up，三种括号
+
+//---------------------------------------------------------
+1／2 
+之前 6月投过 Fall 实习，一月被hr联系new grad职位。
+
+店面:  爸爸 +  two 萨姆
+
+昂赛: 爸衣 + 司酒司 + reverse words 
+
+几个小的follow ups
+
+基本上和地理面经一样，注意交流和代码细节。
+
+
+
+补充内容 (2019-3-21 03:0‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌4):
+还有 简化的 儿散
+
+//---------------------------------------------------------
+
+3/15 
+1. first bad version. 
+	给你任务{a,a,a,a b, c, d} 跟整数k
+	相同的任务要距离K才能继续
+2. 给一段字串 可以忽略掉一个错误的字母後 是否为回文字串
+3. BQ valid binary tree
+
+各位好好刷题阿
+
+
+//---------------------------------------------------------
+
+timeline: 去年9/20收到hello from fb，之后没了后文，也没拒也没消息，然后2/13突然把我捞起来进入流程，2/22电面，电面完三小时通知我onsite（效率惊人），然后约了3/11的onsite，然后一周后在我的催促下今天给了offer
+电面
+binary Tree to circular double linked list(in order)
+利口 儿药物 Kth largest number
+
+onsite
+1. 先是一道很简单的判断是否是monotonous array（递增or递减，允许有相同的元素），利口 儿幺幺
+2. 先一堆bq，然后是利口 幺儿无 （bq记得的有先说一个team work的project，然后讲有没有和队友产生分歧以及解决方法，然后最proud的project，然后在team中有没有其他队员之间有冲突或者不engage你是怎么解决的，还有最difficult的队友）
+3. 一来又给我 儿幺幺，我一听告诉他第一轮做过了，结果给我来了个加强版计算器，先说简单点只有+和*，然后做了，然后说如果+，-，*都有，各种情况都算作valid的输入
+就比如 3+-2*-3--4 （返回13）之类都可以作为输入，就是还需要判断+，- 是unary还是binary啥的，我就懵了，然后分析了一大波不断的发现各种受阻，最后emmm没讲清楚也没写完。。。
+然后真的以为肯定挂定了，但因为前面觉得都答得挺好的，所以还抱有一丝希望。。
+
+因为想在春假前尘埃落定，催了下结果，今天忐忑了一整个上午，下午接电话得知了good news，艰难的找工作总算要到尾声了，虽然未来还是很迷茫，但之前的努力总算是有好结果啦‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌！
+
+
+
+//---------------------------------------------------------
+1. intersection of two sorted arrays. follow up: if one of the arrays is extremely large.
+
+藜蔻 奇溜
+
+2.  3sum. follow O(n)
+
+利口 尔雾散
+
+3. likou 洱器霸
+
+tough project and how to deal with it
+
+//---------------------------------------------------------
+
+3/5 Facebook onsite
+總共兩輪coding, 一輪bq
+答了四題
+1. Subarray sum to k, 原題 秒
+2. Subset product 類似subset那題 秒
+3, 給你一個array, ex.[abc, cde, zab, aa, bb]要你返回[[abc,cde,zab], [aa,bb]],因為被分為同組的每個string可以透過每個字母shift一樣的步數得到相同的string
+這題我寫完後被抓了一個bug, 改好後問我可不可以簡化code, 有答出來
+4. Move zeros 原題 秒
+有點想問知道的人是不是答越‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌多題上的機率越高呀,因為聽到同批去的有答五題六題的
+希望能過hc , 求一個offer
+p.s. SF 好好玩
+
+
+地伞提是黎口而思酒
+
+//---------------------------------------------------------
+1/8：内推fb，找的是地里的内推贴，回复的特别快，在此感谢好心人！！！
+1/23: hr来联系安排面试。楼主当时没有准备的很充分，所以约了三周以后的面试
+2/14: 电面面试 （https://www.1point3acres.com/bbs ... read&tid=482997）
+2/28 脸书onsite，uday
+
+三轮面试，每轮45分钟
+第一轮：
+问题一：permutation 利口四七，但是input改成了string，需要处理duplicate的情况
+问题二：利口二散酒，这道题之前做过
+第二轮 ：利口五遛令，用prefix 和用two pointer都讨论了一遍，edge case target = 0 的情况
+第三轮：bq加coding，bq问了最challenge的project，最difficult的客户，希望改进fb哪一点。code考了clone graph
+
+中午12:15结束面试，接下来就是uday的其他项目。我们去fb食堂吃了午餐，有两个sde来和我们聊天一小时，hr带我们逛了campus，介绍了一下fb的benefit。之后oculus 体验，还发了一件fb外套。
+楼主之前都是组招，没有体验过这样精心安排的u day，感觉瞬间被圈粉。
+
+
+其他的碎碎念：
+面试官很interactive，在写代码过程中有比较多的交流，也会引导你，总体来说体验很不错。
+fb的题还是有一些难度的，需要好好刷题。behaviour也要准备。这里推荐一个帖子，归纳的不错：[url]https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=454990[/ur‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌l]
+感觉这段时间fb的hc比较充许，大家要抓住机会啊
+
+发一下面经，希望下周会有好运，另外求大米啊～～
+
+
+//---------------------------------------------------------
+
+回报地里。
+
+第一轮
+一道很简单的题 10分钟写完
+一道利口 刘而药 简化版
+
+第二轮
+利口 药思刘
+
+第三轮
+bq+翻转句子中的word顺序，word本身不变
+
+‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌想顺便问下还有什么公司在招new grad的。感激不尽！
+
+//---------------------------------------------------------
+
+離扣散七把離扣二三
+離扣散九
+離扣四六三
+離扣一散散
+求大米
+//---------------------------------------------------------
+
+我就是大家所说的加面behavioral questions 跪了的情况……12 月份拿到了onsite。一轮research谈心，一轮machine learning design，两轮coding
+
+一个经验是大家一定要看清楚面试地点在哪里。楼主因为onsite推迟了几次，最后没有确定好在哪里面试，结果早上uber到了menlo park的总部才发现错了地方。最后虽然提前一个小时出发，结果却迟到了半个小时。。。
+第一轮research谈心只说了10分钟，也有可能是之后加面的原因吧。
+两个coding题还算简单，一个是合并两个linked list，可能是楼主不是太熟的原因吧，最后有一点bug，不过经面试官提醒后改正了
+另一个是镜像一个二叉树，楼主用了python 3的yield from，面试官不太懂还给他解释了一遍……
+因为楼主onsite的经验不足，这两道题都花了挺长时间，没有时间follow-up第二题。后来在板上看到一般每轮都会面两道coding题，就感觉不妙了……
+machine learning面的是newsfeed，其中有一问是怎么推荐用户兴趣以外的post，楼主不太会就说可以randomly推荐一下。这问我现在也不清楚，请大家讨论一下吧
+
+Onsite过后我觉得不妙，就‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌等着悲剧了。结果告诉我要video call加面一轮……结果是一位阿三小哥，感觉非常的不友善。。。感觉问的behavioral 题都是楼主仔细准备过的，但是最后还是挂了……
+因为没有feedback，所以也不知道到底挂在哪里，不过因为楼主面的不是特别好所以也不是很奇怪。
+
+感觉facebook的薪资还是比别家高好多啊，很可惜浪费了一次机会。希望大家加油啊～
+
+//---------------------------------------------------------
+
+脸脸onsite。
+三轮。
+
+[hide=250]
+第一轮intersection of two sorterd array; number of island.
+第二轮 populate next pointer for a binary tree；
+第三轮 clone graph. continuous subarray sum equals k.
+[/hide]
+
+
+[backcolor=rgb(255, 247, 1‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌60)]面的时候有很多做的不够好的地方。
+感谢面试官小哥们的帮助和善意～
+
+//---------------------------------------------------------
+报一个非常曲折的脸家面试经历，刚刚面完估计是最后一轮的加面，结果还在等待中，求祝福
+
+简单说下背景，lz是预计今年毕业的cs phd，某普通州立大学，phd方向比较小众，涉及一点big data的system，也用一点machine learning。
+ok，最开始是负责seattle office的recruiter主动发邮件来的，说是有ML research scientist的机会，要不要来试试。于是就约了时间电面。
+
+电面1: 国人小姐姐
+LC191
+LC304
+总体没有太大问题，但是第二题写完有个数组下标的bug，自己口述例子的时候发现并修正了。估计因为这个这轮没有strong，于是加了个第二次电面
+
+电面2: 欧洲口音的大叔
+LC301 (只需要返回一个结果)
+LC273
+这次发挥不错，都很顺利的写完了。过了两天recruiter发来邮件约onsite。然后告诉我把我转交给另外一个menlo park的recruiter了。。。
+
+Onsite：
+Round 1: research + BQ，一个欧洲小哥面的，这轮没什么好说的，就是纯聊天，感觉聊的挺好的。
+Round 2: ML design: news feed ranking，又一个欧洲小哥，自己没做过ranking，只能凭一点学过的ML课上的记忆说了，但基本问题都能回答上来，可以提出一些最naive的model来解决问题，可以分析优缺点和如何evaluate，感觉面试官还是比较满意的。
+Round 3: LC199 + LC88，一个印度小哥，不苟言笑的样子，基本都是先让说算法，分析时空复杂度，然后再写代码。
+Round 4: LC297 + LC300，国人小哥，也是生无可恋的样子。。。废话不多，两题都很快写完了。
+Round 5: ML design: given a post(text), determine what language it is. 国人小姐姐+欧洲大叔shadow，这轮是跪了。对NLP一点不了解，所以不知道除了user本身信息还有什么其他feature可以用。所以我假设有个NLP的API可以生成一些feature给我用，然后在用个classifier来训练。后面对多类分类的evaluation答的不好，这个确实是自己掌握的不好。
+
+一周后recruiter在没约时间的情况下直接来了电话，以I'm sorry ... 开头。。。但是，转折来了，说完之后问我，对system&infra方向感兴趣不，当然说yes，然后说把我介绍给另一个负责system&infra research scientist的recruiter。果然，很快另一个recruiter联系我了，然后说需要加试一轮system design。约了大约10天后video面。这个recruiter还很贴心的在面试前约了电话，简单说了system design面什么，然后也把之前onsite的反馈给我说了，说是research+bq很好，ML design有mixed feedback。（没说coding轮的情况，我也没追问，但我猜应该还不错，不然也不用费这精力让我加面system desing了吧）
+
+加面system design：在FB工作了7年的国人大哥。说实话这轮压力还是挺大的，毕竟经历了之前onsite也知道了结果，应该说就看这一轮表现了。之前一直在刷题，于是10天内狂补system design。。。精力主要放在distributed system方面了，因为看面经基本都是这个方向，但是面试偏偏面了个虽然见到有人面过，但是没有详细准备，也没搜到太多资料的design google map的题。没办法，只能硬着头皮做了。以下是问到的内容：
+design google map
+	- calculate route from A to B
+		- how to store map/road data？
+		- how t‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌o calculate shortest route？
+		- how to include road type info (highway / local street)？
+		- how to include traffic info ( what specific traffic info do you want? Where to get them? How to incorporate these info into route calculation? )
+	- how to scale the system
+答完自我感觉between hire和no hire吧，希望面试官能手下留情
+
+//---------------------------------------------------------
+
+脸书onsite四轮：
+
+第一轮是个亚裔小哥迟到10min 一进来出了一道largest number 然后拿着笔记本开始写他自己的code...似乎这也不是高频题不过还是做出来了 他又出去打了个电话...这一轮最后就这一道题 
+
+第二轮是vertical binary tree题目大家应该都查得到 还有一道max product subarray
+
+第三轮是system design高频map
+
+最后一轮是minimum window su‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌bstring感觉也不是高频题。面官对这道题的要求很高。
+
+
+//---------------------------------------------------------
+到的时候HR接晚了，所以比面试时间晚了20分钟进场。整个导致第一轮面试时间不足，无论结果与否，都得加面。
+
+
+第一轮：南美小哥。SDE coding 只出了一个题，Word Ladder 2简化版。只需要一个解即可。。用了BFS刚好写完。。小bug，刚开始忘了问end word是不是必须在字典里，后来面试官说有问题，然后fix了。。
+
+
+第二轮：ML系统设计。比较坑的一轮，之前那么多人的ML engineer面经，都是News Feed ranking, Ads ranking，我也按这个准备。。。结果考了一个用Machine learning来做Facebook的好友推荐功能。。这轮回答的磕磕绊绊，有可能会挂。。
+
+
+中午吃饭，和校友聊天。。
+
+
+第三轮：coding,中国小哥 一道题 Walls and Gates. 还有一道Simplify path 第二道没有做完。。
+
+
+最后一轮Behavior, 主要讲 博士研究还有之前的实习经历。。
+
+
+果不其然，经过一周之后，要求加面Coding, 约了一个星期后加面。。
+
+
+电话加面小哥如约打了电话，两个题，第一题 subaraay sum equals K 但是所有元素都是正数，用sliding window解完。第二题 Sum Query 2D, 口头跑case 也没问题。。35分钟做完两道题，然后和他聊了聊他的日常Infrastrcture的工作。。。
+//---------------------------------------------------------
+首先是onsite，一轮behavior，两轮coding，最后一轮系统设计
+
+1. behavior，阿三哥
+fb出了名的重视这些，
+你最骄傲的项目，你给你老板提个意见，你老板曾经对你有过什么建议，
+好多好多，问了整整一个小时
+建议大家好好准备，写个稿子读两遍都不为过
+
+2. coding，
+一个华人老爷爷，中国人的姓，外国人的名。脸色不太好看，anyway。。。
+完整儿茶书
+阅读4字节
+都是原题
+
+3. coding
+印度人
+anagram
+儿茶书找最低公共祖先
+
+这里有一个小插曲：
+我的面试方面没有eraser，第二轮面试官在面试中途出去找eraser，大概离开了有3分钟，但是没找着。
+第三轮面试官发现没有eraser，也出去找了，居然瞬间就找到了。。。
+
+4. 系统设计
+国人小哥
+设计这样一个service：
+好友之间互相分享一些链接，这些链接有不同的权限，比如公开，仅好友可见，分组好友可见 。
+要求判断，某个用户是否有权限查看某个链接。
+
+过了十来天，recruiter说我的系统设计问题不够具有代表性（？），所以要加面。
+一月初视频加面，一个印度人
+问了：在一台机器上，实现一个哈西马普。
+
+其实我觉得这道题还是非常奇怪。。。
+我准备了那么多什么设计fb设计ins之类的，面了两次都没有面到。也是服了。
+
+第二次面完‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌之后，我拿别家的team match去催，
+结果催挂了，recruiter邮件里还说，
+祝一切都好，反正你现在也有options了。。。
+额 ==！
+
+总之我觉得自己coding做的挺好的，但是系统设计都是临时抱佛脚，尽力了。
+我总结了一下自己的面试，有印度人的都挂了，没有印度人的都过了。
+恩，我只能这样安慰自己了~
+
+祝大家新年一切顺利！
+求加米~
+
+//---------------------------------------------------------
+
+抱一个11.5昂赛面经
+一轮：iterator写preorder traverse，写了两种方法
+二轮：bq轮，白人manager一直在记，写了两页纸，聊嗨了，45分钟过了才意识到，最后没有问coding题
+三轮：local minimum+DAG找LCA，感觉是面试官临时出的题，问输入是什么面试官想了半天让自己定义
+
+‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌题目全bugfree写出来了，可能写的题太少吧，三轮下来只写了三道题很迷
+
+//---------------------------------------------------------
+# Coding Interview I：
+> [LC398]  Random Pick Index
+	Follow-up: Prove the correctness of the algorithm.
+
+>[LC317]  Shortest Distance from All Buildings 
+	Follow-up I: Optimize space and time complexity in term of the constant factor.
+	Follow-up II: Parallelization.
+
+# Coding Interview II:
+> Longest Consecutive Sequence in 2D Matrix
+	有些类似 [LC329]
+	Follow-up: Achieve O(1) extra space, and O(N^2) time, N is the number of row/column.
+
+# ML Design I:
+> Design video recommendation system.
+	Follow-up: How to maximize the video watching duration.
+
+# ML Design II:
+> Design Ads security system, detecting non-appropriate ads.
+
+# BQ Interview:
+> BQ questions
+> Find the given word in the 2D Matrix.
+
+
+//---------------------------------------------------------
+
+
+12月初的onsite，面了2个coding、一个behavior、一个设计
+今天来消息说要加面一轮系统设计
+
+
+楼主没有任何系统设计的经验，都是面试前临时抱佛脚的
+当初网上找的课件，硬看了几天
+
+求大家支支招，19年一月初加面
+这么短的时间该怎么准备啊？
+我之前看课件貌似不得章法
+
+
+//---------------------------------------------------------
+
+第一轮是个白人小哥，人很好，全程微笑。两道都是面经题。一道稀疏向量点积。一道check words order，就是给char的顺序，判断String数组是否是sorted。
+
+
+第二轮一个亚裔小哥。一道convert binary tree to double linkedlist。没让直接convert，让重新建一个linked list出来。第二道是intersection of two array。
+
+
+第三轮bq，跟一个黑人manager video面试。感觉问的全是pm的问题。介绍一个你曾经开发过并且已经release的product。介绍一个最近正在用的product，为什么喜欢他？如果让你来improve，你会怎么improve？怎么知道你improve是成功了还是失败了？怎么验证你的测试方法？
+
+
+第四轮business design。一个印度的manager。给了一个场景。BestBuy在FB上投放了广告。怎么知道用户是否是通过这个广告去BestBuy买了商品（包括线上和线下），给出solution。对于线下的solution，哪些数据比较重要。哪些metric是BustBuy需要考虑的。你怎么知道你的solution是不是成功了。怎么scale你的solution。
+
+//---------------------------------------------------------
+
+Monotonic Array - https://leetcode.com/problems/monotonic-array/
+Meeting rooms II - https://leetcode.com/problems/meeting-rooms-ii/
+Kth largest element of an array - https://leetcode.com/problems/kth-largest-element-in-an-array/
+//---------------------------------------------------------
+
+Given an array of numbers, remove the elements according to following conditions
+
+remove an element arr[i] if and only if arr[i-1] < arr[i]
+You might get the resulting array after removing the elements. Repeat the process until array remains unchanged. Return the number of steps in which the array remains unchanged.
+
+Eg:
+[6,3,1,8,9,4,3,2,8,9]
+
+after 1st iteration we get
+
+Step 1: [6,3,1,4,3,2] ---> [8,9] is removed since 1<8<9 && 2<8<9
+Step 2: [6,3,1,3,2] ---> [4] is removed since 1<4
+Step 3: [6,3,1,2] ---> [3] is removed since 1<3
+Step 4: [6,3,1] ---> [2] is removed since 1<2
+
+Answer: 4 (Total no. of steps are 4)
+//---------------------------------------------------------
+
+Duration: 40 mins
+
+Question 1:
+https://leetcode.com/problems/product-of-array-except-self
+
+Question 2:
+Variation of https://leetcode.com/problems/random-pick-with-weight
+Given a list of cities and the population, pick randomly any city based on the population: "NY": 5M, "CA": 10M, "WS": 2M
+//---------------------------------------------------------
+Given a matrix, return all elements of the matrix in antidiagonal order as shown in the below image.
+
+
+
+Example 1:
+
+Input:
+[[12, 7, 21, 31, 11],
+ [45, -2, 14, 27, 19],
+ [-3, 15, 36, 71, 26],
+ [4, -13, 55, 34, 15]]
+
+Output:
+[
+[12],
+[7, 45],
+[21, -2, -3],
+[31, 14, 15, 4],
+[11, 27, 36, -13],
+[19, 71, 55],
+[26, 34],
+[15]
+]
+
+//---------------------------------------------------------
+Question:
+Given a complete binary tree, count the number of nodes.
+
+Follow-up:
+Given a complete ternary tree, count the number of nodes.
+
+class TreeNode {
+	TreeNode left;
+	TreeNode mid;
+	TreeNode right;
+}
+
+
+//---------------------------------------------------------
+Given a string s, return all palindromic subsequences of s.
+
+Example 1:
+
+Input: "abac"
+Output: ["a", "b", "c", "aa", "aba"]
+
+https://www.geeksforgeeks.org/count-palindromic-subsequence-given-string/
+https://leetcode.com/problems/count-different-palindromic-subsequences
+//---------------------------------------------------------
+Question:
+https://leetcode.com/problems/binary-search-tree-iterator
+
+Follow-up 1:
+Assume BSTIterator is a library class. You need to extend the functionality of this class by implementing 2 methods:
+
+public boolean hasPrev() {
+}
+
+/** Can only take 1 step back */
+public Integer prev() {
+}
+Example:
+
+	   7
+	 /   \
+	3    15
+		/  \
+	   9    20
+
+ExtendedBSTIterator it = new ExtendedBSTIterator(root);
+it.hasNext(); // true
+it.next(); // 3
+it.next(); // 7
+it.next(); // 9
+it.next(); // 15
+it.hasPrev(); // true
+it.prev(); // 9
+it.hasPrev(); // false bacause we can only move 1 step back
+it.next(); // 15
+it.next(); // 20
+it.hasNext(); // false
+it.hasPrev(); // true
+it.prev(); // 15
+it.hasNext(); // true
+it.next(); // 20
+Hint
+Follow-up 2:
+What if you can move k steps back?
+
+//---------------------------------------------------------
+Position: Production Engineer
+Result: Rejection
+
+Question 1:
+Write a function which accepts size of a grid n * m and no. of mines and places mines on the grid randomly.
+
+Question 2:
+A critical network service is being upgraded. The developers have decided to use a new port to reduce confusion. The migration will take a long time so a daily report of the migration's process is needed. Write a script that will take in a list of hosts on STDIN, one per line, and a pair of ports as command-line parameters. Your program should print the progress of the migration and have special output for hosts that are running both versions, and hosts that aren't running any version or are down.
+
+example of execution
+cat host.list | myscript oldport newport
+
+Question 1: seems like something similar to this yates shuffle thing. I had a similar question for my technical interview with google. Heres the link https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
+
+this is also another solution some one posted to answer my question https://leetcode.com/playground/NdeRNqJ9
+
+//---------------------------------------------------------
+
+Question 1:
+Given k sorted arrays of possibly different sizes, find m-th smallest value in the merged array.
+
+Example 1:
+
+Input: [[1, 3], [2, 4, 6], [0, 9, 10, 11]], m = 5
+Output: 4
+Explanation: The merged array would be [0, 1, 2, 3, 4, 6, 9, 10, 11].  
+The 5-th smallest element in this merged array is 4.
+Example 2:
+
+Input: [[1, 3, 20], [2, 4, 6]], m = 2
+Output: 2
+Example 3:
+
+Input: [[1, 3, 20], [2, 4, 6]], m = 6
+Output: 20
+My solution
+Question 2:
+Leftmost column index of 1
+
+Can we use max heap for question 1. Keep it's size to m. When comparing first element of an array with it's top, if top element of heap is smaller pop it and push array element into heap. Time complexity will be o(nlogm) in this case...
+//---------------------------------------------------------
+
+Facebook | Phone Screen | Serialize Binary Tree & Integer to English Words
+3
+Anonymous User
+Anonymous User
+Last Edit: August 18, 2019 3:44 AM
+
+669 VIEWS
+
+Date: Aug 2019
+Location: New York
+
+https://leetcode.com/problems/integer-to-english-words
+https://leetcode.com/problems/serialize-and-deserialize-binary-tree
+
+//---------------------------------------------------------
+Given a list of TreeNodes. TreeNode is standard LC class:
+
+class TreeNode {
+		TreeNode left;
+		TreeNode right;
+		int val;
+}
+Find out if all these nodes belong to the same valid binary tree.
+
+public boolean isBinaryTree(List<TreeNode> nodes) {
+}
+Example 1:
+
+Let's say we have the following binary tree
+
+		    1
+			 ↙ ↘
+			2   3
+				 ↙
+				4
+
+We can create it like this
+TreeNode n1 = new TreeNode(1);
+TreeNode n2 = new TreeNode(2);
+TreeNode n3 = new TreeNode(3);
+TreeNode n4 = new TreeNode(4);
+
+n1.left = n2;
+n1.right = n3;
+n3.left = n4;
+
+Input: [n4, n2, n3, n1]
+Output: true
+Example 2:
+
+		     1
+			 ↙  ↘
+			2    3
+			 ↘  ↙
+				4
+
+TreeNode n1 = new TreeNode(1);
+TreeNode n2 = new TreeNode(2);
+TreeNode n3 = new TreeNode(3);
+TreeNode n4 = new TreeNode(4);
+
+n1.left = n2;
+n1.right = n3;
+n2.right = n4;
+n3.left = n4;
+
+Input: [n2, n3, n4, n1]
+Output: false
+Example 3:
+
+	 1
+	⤤ ⤦
+	 2 
+
+TreeNode n1 = new TreeNode(1);
+TreeNode n2 = new TreeNode(2);
+
+n1.left = n2;
+n2.left = n1;
+
+Input: [n1, n2]
+Output: false
+Example 4:
+
+		    1           4
+			 ↙ ↘        ↙  ↘
+			2   3      5     6
+
+TreeNode n1 = new TreeNode(1);
+TreeNode n2 = new TreeNode(2);
+TreeNode n3 = new TreeNode(3);
+TreeNode n4 = new TreeNode(4);
+TreeNode n5 = new TreeNode(5);
+TreeNode n6 = new TreeNode(6);
+
+n1.left = n2;
+n1.right = n3;
+
+n4.left = n5;
+n4.right = n6;
+
+Input: [n2, n6, n4, n1, n3, n5]
+Output: false
+Example 5:
+
+		    1
+			 ↙ ↘
+			2   3
+				 ↙
+				4
+
+TreeNode n1 = new TreeNode(1);
+TreeNode n2 = new TreeNode(2);
+TreeNode n3 = new TreeNode(3);
+TreeNode n4 = new TreeNode(4);
+
+n1.left = n2;
+n1.right = n3;
+n3.left = n4;
+
+Input: [n2, n3, n1]
+Output: false
+Explanation: l4 is a part of the tree but it's missing in the input list so return false.
+NOTE: Node values only used for demonstration purposes.
+
+https://leetcode.com/discuss/interview-question/347374
+//---------------------------------------------------------
+Given an int array wood representing the length of n pieces of wood and an int k. It is required to cut these pieces of wood such that more or equal to k pieces of the same length len are cut. What is the longest len you can get?
+
+Example 1:
+
+Input: wood = [5, 9, 7], k = 3
+Output: 5
+Explanation: 
+5 -> 5
+9 -> 5 + 4
+7 -> 5 + 2
+Example 2:
+
+Input: wood = [5, 9, 7], k = 4
+Output: 4
+Explanation: 
+5 -> 4 + 1
+9 -> 4 * 2 + 1
+7 -> 4 + 3
+
+https://leetcode.com/discuss/interview-question/354854/Facebook-or-Phone-Screen-or-Cut-Wood
+
+//---------------------------------------------------------
+https://leetcode.com/discuss/interview-question/338948/Facebook-or-Onsite-or-Schedule-of-Tasks
+
+//---------------------------------------------------------
+
+
+Task Scheduler
+1.每个task运行完后有m个cool down period，在这期间不可以运行同样的task
+2.cooldown period里可以随便运行其他的task
+3.不能改变运行的顺序
+
+例题：
+[1, 1, 2, 1, 2] M = 2
+
+运行方式：
+1 _ _ 1 2 _ 1 2
+output: 8 （需要8个time unit）
+
+followup：
+如果m远远小于k（k是task种类数，怎么优化）
+用lru cache优化。。。代码没写完，于是gg了。
+
+
+补充内容 (2019-8-20 15:23):
+补充一下优化部分：
+一个最开始resaonable的解法：一个map，记录每次task最后执行的时间 来‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌计算需要cool down多久。
+空间复杂度：O(k) k是种类数目
+假设m 远小于k的话我们可以优化到O(m)的空间。用lru的原理。
+
+
+一个最开始resaonable的解法：一个map，记录每次task最后执行的时间 来计算需要cool down多久。
+
+空间复杂度：O(k) k是种类数目
+假设m 远小于k的话我们可以优化到O(m)的空间
+
+就是lru cache了，或者你用python ordered dict也行。
+
+//---------------------------------------
+
+
+第一轮 research + behavior：问PhD research经历和以前的实习项目，问了一些常见behavior问题，比如项目最大的challenge是啥，这一轮感觉比较随意，跟面试官聊开心就好，据说这一轮有半场可能是LC题热身，但我没问，全程聊天，在白板上讲讲research啥的
+第二轮 coding: LC273 数字转英文，follow了一下溢出整数最大值咋办
+中午吃饭，食堂好评
+
+第三轮 ML system design: 给一堆带有文字和图片的广告，如果区分和过滤掉带有违禁违法信息（比如枪支，毒品等等）的广告。本来想先讨论一下system design的flow，面试官强调要focus在ML算法上面，主要讨论用什么ML算法，为啥用这些算法，怎么评估算法好坏之类的
+第四轮 coding: LC721 Accounts Merge, LC297 Serialize and Deserialize Binary Tree
+第五轮 coding: LC269 Alien Dictiona‍‌‌‍‌‍‌‍‌‍‍‌‍‌‍‍‌‍‌ry，是用来training的shadow面试，不知道看不看评价，一个小姐姐全程提问，一个大姐在旁边一言不发的记录
+
+
+
+------------------------------------------
+
+第一轮： 把二叉树添加next节点，指向右侧节点，follow up：不用额外空间
+第二轮：系统设计，给一个坐标，返回和它距离k的所有建筑
+第三轮：bq。bipartite graph
+第四轮：给一个都是正数的数组，求size为k的最大和。求三个size为k的最大和
+
+
+-------------
+蠡口溜散酒，因为做过简化版的，所以答得还算可以。
+蠡口以而死，但跪在follow up上面了，要求要memorize最终的path，并且还问了有没有可能不用recursion做这道题，说出思路即可。
+
+-----------------
+二期吧 药物三 其二要 刘刘思 刘九思 邀三五 二流伞 而遥遥 二期伞 酒气伞 二流就 伞玲玲
+
+
+--------------------------------------------------------------
+Onsite
+--------------------------------------------------------------
+
+Behavior:
+
+最成功的项目；有跟别人有conflict吗；最不喜欢跟什么样的人work；最喜欢组里的什么人，为什么；有什么失败吗，学到了啥；
+
+个人喜欢套 “举个例子”➕“所以我学到了blah blah”这个模板，建议楼主去看看Dan Croitor的油管，讲得很详细
+
+1) dive deep into most recent project 2) most intestering debug/bug 3) describe most fav‍‌‌‌‌‌‌‌‌‍‍‍‍‍‌‍‌orite day in your current company（呵呵）  4) how to work across team 5) give me an example you push back 6) example you regret your design 
+
+
+Culture fit 这轮真的非常重要。 千万要重视起来。 如果是面E5。 一定要尽力往怎么lead project 上靠。 core values 也一定要记牢。
+
+和同事conflict啊，最proud的project啊之类的
+
+
+e5 one system design
+E6，两轮设计
+
+谈经验 谈leadership 谈项目 谈各种soft skills
+
+
+
+HR mentioned: 
+1. Show leadership in both ppl management and Project scope, in both experience and system design round
+2. Clean code with test cases
+3. System Design 里一定要主动driv‍‌‌‌‌‌‌‌‌‍‍‍‍‍‌‍‌e这个chat 面试官会很希望你多问多想 他会帮助你narrow down这个题目的components
+4. 在system面试里有机会可以dive deep into your domain knowledge. 如果你可以show一些面试官感兴趣但是maybe也没有很懂的东西 很有利于定级
+
+NYC Onsite:
+Timeline: coding1 + product desing + lunch + background + coding2 + coding3
+
+
+常规behavior问题，聊proud的项目（问得很细，比如metrics），如何处理和cowoker的冲突，等等。这轮并不像recruiter说的会有一题coding。
+
+
+依然不知道怎么答比较好，最后面试官说：你说了太多detail，我没看出你是怎么从这些经验中学习的，感觉凉了。全称我采用了一个策略：我承认自己虽然目前情商不行，但愿意学习，最后问了他好多这个方面的问题，问他怎么学习这方面的能力的。他啪啪啪地记下来，感觉我的策略奏效了？
+
+
+她问你有没有过，完成了一件事情后有如释重负的感觉。楼主答的是most challenging，但这里她可能更想要我为什么觉得它很难，以及我的态度。
+
+
+和同事老板conflict怎么样，同事给你feedback有啥受益的么，老板好么怎么变得更好么，好员工有哪些品质？这个品质你有吗，举个例子啊。这是亚麻学的面试么，脸书也走这一套了。而且要求和亚麻一样，例子要详细，技术细节上要面试官听的懂，而且故事也要make sense，要面试官也同意你的做法是对的。连说45分钟，很累。
+
+why facebook
+
+
+ one project that you are proud of/Team project/Disagreements/Constructive suggestions from manager 基本是地里常见的
+
+
+bq 问了most proud project，project business value， internship 喜欢哪点 学到什么， team conflict
+
+
+
+常规bq，比较难的大概就是收到最有建设性的feedback是什么
+
+
+第一轮：bq。能记住的问题有：
+1） 介绍骄傲的project。遇到了什么问题。
+2） 怎么处理和manager的矛盾
+3） 你有role model么？是谁？你觉得你和她的差距是什么？
+
+问简历并且说的很具体。你收到的manager 的最差的feedback是什么。你最喜欢的教授和最讨厌的教授。bq答的不是很好。
+
+bq记得的有先说一个team work的project，然后讲有没有和队友产生分歧以及解决方法，然后最proud的project，然后在team中有没有其他队员之间有冲突或者不engage你是怎么解决的，还有最difficult的队友
+
+希望改进fb哪一点
+
+最proud的项目；收到的positive的feedback是什么；和其他team合作的经历；直接和客户对需求的经历；和别人有分歧的经历；和别人有分歧但其实错在自己的经历；不太agree with的经理的管理方式
+
+Tell me about one of your successful projects.
+What would you have done differently in this project?
+Tell me the type of person you don't want to work with.
+利口刷tag，高频从上到下就够了，我看了之前其他同学的面经总结，高频题都一样，低频的各不相同，低频碰上原题的概率极低，尤其是uday，几十个人至少也得几十个面试官。所以高频准备好好的就行了。
+
+BQ: 最骄傲的project，为啥骄傲，如何convince others，如果能再做一遍这个project，你会改进什么地方
+
+fav project / biggest challenge as in technology, communication, scale, people, etc / disagreement with manager, peers, ppl from other teams, how to solve at the end / what to expect at next job / least fav in work
+
+bq各种least问题，least internship， least person you work with,
+
+https://www.1point3acres.com/bbs/thread-195416-1-1.html
+
+
+---
+
+
+经验：
+结合我最近看design的资料，给楼主一点建议吧。
+
+
+1 着重在thinking process，不要想45分钟给一个完美的解决方案
+
+2 条理要清晰，有big picture，有data modeling，有data flow
+
+3 多从customer角度来考虑，用户要什么知道了，你才好决定你的设计中的取舍
+
+4 不要一开始就挖大坑，从MVP开始，最后时间足够才加新的feature
+
+5 从最开始简单的架构开始迭代，分析负载上去了之后的bottle neck在哪儿，你要怎么优化。这时候再带入一点customer最关心的是哪里，可以做哪些tradeoff。你做这个技术选型的原因是什么，因为技术mature还是没有spof
+
+6 最后一定要review一下系统的scalability，负载x10的话，你的架构是不是线性的加资源进去就好了？
+
+7 架构确定好了之后，最好来个预估要达到这个性能指标，我们需要多少机器以及怎么部署
+
+8 别忘了提一嘴logging monitoring
+
+9 扯一扯service oriented architecture也是极好的
+
+10 把qconf 2012里scaling Pinterest from 0 to billions看几遍，我看了那么多资料里面，最有启发的一篇
+
+
+总的来说，我不太建议一上去就摆一个高大上的架构，从小到大循序渐进的来，你就可以展现你更多的能力，不光有breadth还有depth。系统设计都是相通的，碰到没见过没准备的不要蒙蔽，毕竟要考察的是思维过程，不是要求你设计一个完美解决方案。
+
+
+
+我自己的系统设计套路：
+1. 讨论用户是谁
+2. 根据用户讨论feature
+3. 问一下系统需要handle 的traffic, 问问需不需要进行计算。 面了8次系统设计，只有roblox 要求计算。其他都不要。。。
+4. 根据feature讨论系统需要存储和serve哪些data, 这些data用什么存， 讨论sql/nosql/cache/object storage/hdfs 取舍， 巴拉巴拉。。。
+5. 根据数据， 设计service。 画图。
+6. work through一个use case, 把所有service连起来， 同时修改刚才画好的图。 比如 做uber eats, 讨论用户要order 一个食物，到餐馆接到订单， 到司机接到订单。。。。
+7. 讨论use case细节， 比如 uber eats司机进入某个区域怎么识别啊， cache里怎么存啊。面试官全程都会drive你的design的， 不会丢你在那里自言自语。
+8. 面试官会问， 某些环节挂掉了，怎么处理。 无非就是1. 要么replica， master slave, active-passive 或者 2.周期存snapshot 在磁盘上，然后存action log... 挂了可以重新恢复。。。
+9. 一些环节怎么scale... multi instance, partition 这些呗。。 偶尔说说service mesh...
+
+onsite面试经验：
+- 我面的8次系统设计体验都很好， 面试官会drive design全程， 他会不停的问你小问题带你走。 当然他也会根据你的设计不停的提出小问题。 交流交流交流啦～
+- 有的时候面试官会质疑你的设计。 此时有两种解法， 1. 解释自己为什么这么做， 让面试官认同你的做法 2. 想一想是不是哪里做的不对， 面试官是不是再给你hint，要换一种设计。  具体情况具体分析啦。。。
+- 我至少3次面试，解释了consistent hash 和 virtual node 怎么回事。。  不懂得朋友， 学学看哈。。
+- 每个公司的系统设计面试题都蛮固定的。 提前好好刷以下面经，准备准备。
+
+
+
+
+背景：我没有设计和开发分布式系统的经验，目前正在看design data-intesnive application那本书。同时在研究了很多论坛的总结帖子和油管的技术会议视频。我没有太多经验，只能根据看这些资料来讲我的理解了。
+
+
+1. 缓存： 缓存的使用应该是比较直接，用户登录系统之后，web server通过缓存获取自己全部信息（包括自己所有朋友列表），如果缓存没有，就去route to dB获取用户信息。在得到用户自己的朋友列表之后，再去访问另一个用户状态的缓存服务器（假设存在这样一个用户状态缓存服务器）。假设用户自己和朋友的社交网络graph的地域分布特征为本区域和本国家内的用户的connect较密集，国家之间、洲际之间用户的connect较稀疏； 所以这个用户在线状态缓存，主要保存本地区用户状态。同时少量的其他国家、地区的用户在线状态,方便那些具有多国朋友的人查询自己的好友是否在线。
+
+
+2. Schema的设计： 这里的schema，我理解的是用户是否在线状态的设计，这个应该是in-Mem的schema-less的JSON对象。如果只是为了online/offline这个应用，在设计schema的时候只需要用少数几个attribute，例如： userID，userName，country，Region etc 这样也可以减少内存需求空间。至于脸书这个社交网络平台的其他schema的设计和考虑就比较宽了，设计的内容太多。
+
+
+3. web server与data access server的同步：不知道需要讨论那些问题。
+
+
+4. 数据库与缓存（例如Redis）的同步： 如我上面理解的，用户在线状态信息应该全部通过in-mem获取，如果仅仅是确定在线好友状态，不用去访问关系型数据库（RMDB)。如果是其他信息的话，遵从先缓存更新，后RDMS更新的基本原则。当然需要考虑读/写数据的request load来采取具体策略。
+
+
+5. 1B的用户数量： 还是需要考虑分片（sharding）。我前面假设脸书的用户具有很明显地域分布特征。在分片的时候，主要考虑把本国本区域的人的在线状态信息存储在附近的datacenter。
+
+
+这五个方面我的理解肯定都比较肤浅。望楼主多多指教。也方便活跃版面热烈讨论技术的氛围。
+
+
+
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+
+//---------------------------------------------------------
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------

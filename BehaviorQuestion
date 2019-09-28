@@ -1,0 +1,89 @@
+//focus on impact, move fast, be bold, be open, build social value
+
+0. Self Intro
+ My name is Ruihan and I am from Beijing China. While I got my bachlor degree at City Univerity of Hong Kong and currently I am a second year master student at Duke University. This summer I did an intership at Akuna Capital, which is an option trading company has its own trading engine. So I was working on the C++ library/ framework they are developing for their next gen trading engine. My focus was on the windows port of the library and also the component of inter process communication with a front end GUI application, namly C#. There was a lot of metaprogramming and the performance of the code is alway placed at top.
+
+1. Why facebook?
+
+	-instagram
+		The first fb product I have ever used back in 2014. At that time I dont even have a smart phone since my parents forbids me from using it. But still, I downloaded one to their phone. At that time, instagram is so different and I really like it. Most importantly, I add a lot of friend on instagram. So the
+	-helper people get connected
+	
+	-diversity
+	
+	-friend here
+	
+	-seeing other people happpy will make me happy
+
+2. Best Project
+	-Intern Project
+
+3. Worst Project
+	- Mini uber. With Jin. It actually receive a pretty ok grade but the process is very annoying. The communication with my teammate was not good.
+	
+	
+
+4. Best Feedback
+	- fast learner and hard working
+
+5. Worst Feedback
+	- no abstraction
+	- 
+6. Internship
+-Most valueable things learnt
+Lots of things that I learnt apart from techniqical skills. My project if pretty open ended and Akuna wants us to experience a complete Software development cycle. 
+	agile development, daily scrum, presentation
+
+
+7. What kind of people you do not want to work with
+	-lack responsibility: 
+
+8. 最有建设性的feedback是什么
+lack of communication. manager in hacksthon mode so I did not communicate with him that much
+
+
+怎么处理和manager的矛盾
+
+
+
+你有role model
+
+
+
+聊聊项目 ，与主管的矛盾。
+
+
+
+最骄傲的project，为啥骄傲，如何convince others，如果能再做一遍这个project，你会改进什么地方 
+
+intern project. Actually give the company the idea of the following work.
+I spent quite some time trying to punch holes between WSL and windows even after I know the fact that WSL is not stable...
+
+bq记得的有先说一个team work的project，然后讲有没有和队友产生分歧以及解决方法，然后最proud的project，然后在team中有没有其他队员之间有冲突或者不engage你是怎么解决的，还有最difficult的队友
+
+The mini Amazon /Ups project, 4 people in a group, there are of course many different opio
+
+
+你最骄傲的项目，你给你老板提个意见，你老板曾经对你有过什么建议，
+
+最成功的项目；
+有跟别人有conflict吗；mutex/smart event, message queue
+最不喜欢跟什么样的人work；People lack responibility. One of my teammate. He should be in charge of the front end while I incharge of the backend part. He swore to do everything before the deadlinebut disappeared for one and a half day. 
+最喜欢组里的什么人，为什么；
+Houze. No only talented, but also helpful. Willing to spend 2 hours helping me with a bug.
+有什么失败吗，学到了啥；
+The team went to the hackthon mode for a couple of weeks. At
+
+
+1) dive deep into most recent project 2) most intestering debug/bug 3) describe most fav‍‌‌‌‌‌‌‌‌‍‍‍‍‍‌‍‌orite day in your current company（呵呵）  4) how to work across team 5) give me an example you push back 6) example you regret your design 
+1. Show leadership in both ppl management and Project scope, in both experience and system design round
+2. Clean code with test cases
+
+依然不知道怎么答比较好，最后面试官说：你说了太多detail，我没看出你是怎么从这些经验中学习的，感觉凉了。全称我采用了一个策略：我承认自己虽然目前情商不行，但愿意学习，最后问了他好多这个方面的问题，问他怎么学习这方面的能力的。他啪啪啪地记下来，感觉我的策略奏效了？
+
+
+她问你有没有过，完成了一件事情后有如释重负的感觉。楼主答的是most challenging，但这里她可能更想要我为什么觉得它很难，以及我的态度。
+
+
+和同事老板conflict怎么样，同事给你feedback有啥受益的么，老板好么怎么变得更好么，好员工有哪些品质？这个品质你有吗，举个例子啊。这是亚麻学的面试么，脸书也走这一套了。而且要求和亚麻一样，例子要详细，技术细节上要面试官听的懂，而且故事也要make sense，要面试官也同意你的做法是对的。连说45分钟，很累。
+
